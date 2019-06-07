@@ -1,3 +1,32 @@
 <resources>
-    <string name="app_name">CWL_Test</string>
+    <string name="app_name">ReSupply</string>
+
+    <string name="welcome">Welcome to</string>
+    <string name="login_title">LOGIN</string>
+    <string name="email_hint">E-mail</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button">Login</string>
+    <string name="forgot_password_text_field">Forgot Password?</string>
+    <string name="email_password_do_not_match">E-mail and Password do not match</string>
+
+    <string name="continue_facebook">Continue with Facebook</string>
+    <string name="register_email">Register with E-mail</string>
+
+    <string name="enter_email">Enter your E-mail below, and we\'ll send you a link to reset your password</string>
+    <string name="forgot_password_title">Forgot Password</string>
+    <string name="submit">Submit</string>
+
+    <string name="register_title">REGISTER</string>
+    <string name="first_name_hint">First Name</string>
+    <string name="last_name_hint">Last Name</string>
+    <string name="confirm_password_hint">Confirm password</string>
+    <string name="register_button">Register</string>
+
+
+
+
+
+
+
+
 </resources>

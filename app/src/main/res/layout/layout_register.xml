@@ -31,18 +31,18 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
+        android:importantForAccessibility="no"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:importantForAccessibility="no"
         app:srcCompat="@drawable/resupply_logo_03" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardViewLogin"
         android:layout_width="343dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/triple_button_height"
+        android:layout_marginBottom="76dp"
         android:layout_marginEnd="@dimen/button_margin"
         android:layout_marginStart="@dimen/button_margin"
         app:cardCornerRadius="@dimen/border_radius"
@@ -66,17 +66,51 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textViewLogin"
+                    android:id="@+id/textViewRegister"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/button_margin"
                     android:layout_marginTop="@dimen/button_margin"
                     android:layout_weight="1"
                     android:fontFamily="@font/brown_regular"
-                    android:text="@string/login_title"
+                    android:text="@string/register_title"
                     android:textColor="@color/darkGray"
                     android:textSize="@dimen/large_font_size"
                     android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/editTextFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginBottom="@dimen/button_margin"
+                    android:layout_marginEnd="@dimen/button_margin"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_radius_rectangle"
+                    android:backgroundTint="@color/almostWhite"
+                    android:ems="10"
+                    android:hint="@string/first_name_hint"
+                    android:inputType="textPersonName"
+                    android:padding="@dimen/button_margin" />
+
+                <EditText
+                    android:id="@+id/editTextLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginBottom="@dimen/button_margin"
+                    android:layout_marginStart="@dimen/button_margin"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_radius_rectangle"
+                    android:backgroundTint="@color/almostWhite"
+                    android:ems="10"
+                    android:hint="@string/last_name_hint"
+                    android:inputType="textPersonName"
+                    android:padding="@dimen/button_margin" />
             </LinearLayout>
 
             <EditText
@@ -103,18 +137,20 @@
                 android:inputType="textPassword"
                 android:padding="@dimen/button_margin" />
 
-            <TextView
-                android:id="@+id/textViewEmailPasswordInvalid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <EditText
+                android:id="@+id/editTextConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
                 android:layout_marginBottom="@dimen/button_margin"
-                android:text="@string/email_password_do_not_match"
-                android:textSize="@dimen/slightly_smaller_font_size"
-                android:textStyle="italic"
-                android:visibility="invisible" />
+                android:background="@drawable/border_radius_rectangle"
+                android:backgroundTint="@color/almostWhite"
+                android:ems="10"
+                android:hint="@string/confirm_password_hint"
+                android:inputType="textPassword"
+                android:padding="@dimen/button_margin" />
 
             <android.support.v7.widget.CardView
-                android:id="@+id/cardViewLoginButton"
+                android:id="@+id/cardViewRegisterButton"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
                 android:layout_marginBottom="@dimen/button_margin"
@@ -124,23 +160,16 @@
                 app:cardCornerRadius="@dimen/border_radius">
 
                 <Button
-                    android:id="@+id/buttonLogin"
+                    android:id="@+id/buttonRegister"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/bgBlue"
-                    android:text="@string/login_button"
+                    android:text="@string/register_button"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/normal_font_size" />
             </android.support.v7.widget.CardView>
 
-            <TextView
-                android:id="@+id/textViewForgotPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:text="@string/forgot_password_text_field"
-                android:textSize="@dimen/normal_font_size" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
@@ -149,19 +178,18 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/button_height"
         android:layout_margin="@dimen/button_margin"
-        android:layout_marginBottom="@dimen/button_margin"
         android:layout_marginEnd="@dimen/double_button_margin"
         android:layout_marginStart="@dimen/double_button_margin"
         android:clickable="true"
         android:focusable="true"
+        android:paddingEnd="@dimen/double_button_margin"
+        android:paddingStart="@dimen/double_button_margin"
         app:cardCornerRadius="@dimen/border_radius"
         app:cardElevation="@dimen/elevation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/cardViewLogin"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/cardViewLogin"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.884">
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/cardViewLogin">
 
         <Button
             android:id="@+id/buttonContinueWithFacebook"
@@ -169,38 +197,6 @@
             android:layout_height="match_parent"
             android:background="@color/denimBlue"
             android:text="@string/continue_facebook"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/normal_font_size"
-            android:textStyle="normal"
-            android:visibility="visible" />
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardViewRegisterWithEmail"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/button_height"
-        android:layout_margin="@dimen/button_margin"
-        android:layout_marginBottom="@dimen/button_margin"
-        android:layout_marginEnd="@dimen/double_button_margin"
-        android:layout_marginStart="@dimen/double_button_margin"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardCornerRadius="@dimen/border_radius"
-        app:cardElevation="@dimen/elevation"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/cardViewLogin"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/cardViewLogin"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewContinueWithFacebook"
-        app:layout_constraintVertical_bias="0.984">
-
-        <Button
-            android:id="@+id/buttonRegisterWithEmail"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/pinkRed"
-            android:text="@string/register_email"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="@dimen/normal_font_size"

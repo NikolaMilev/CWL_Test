@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="normal_font_size">17sp</dimen>
+    <dimen name="slightly_smaller_font_size">14sp</dimen>
     <dimen name="large_font_size">20sp</dimen>
-    <dimen name="text_box_padding">15sp</dimen>
-    <dimen name="border_radius">10sp</dimen>
-    <dimen name="elevation">200sp</dimen>
+
+    <dimen name="text_box_padding">15dp</dimen>
+    <dimen name="border_radius">10dp</dimen>
+    <dimen name="elevation">20dp</dimen>
+
+
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="triple_button_height">144dp</dimen>
+
+    <dimen name="button_margin">10dp</dimen>
+    <dimen name="double_button_margin">20dp</dimen>
 
 </resources>
