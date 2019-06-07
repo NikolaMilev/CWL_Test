@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="normal_font_size">17sp</dimen>
+    <dimen name="large_font_size">20sp</dimen>
+    <dimen name="text_box_padding">15sp</dimen>
+    <dimen name="border_radius">10sp</dimen>
+    <dimen name="elevation">200sp</dimen>
+
+</resources>
