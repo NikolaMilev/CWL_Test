@@ -6,9 +6,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.milev.nikola.cwl_test.listeners.GetCharitiesListener;
 import com.milev.nikola.cwl_test.listeners.LoginAttemptListener;
+import com.milev.nikola.cwl_test.listeners.RegisterUserListener;
 import com.milev.nikola.cwl_test.listeners.ResetPasswordListener;
 import com.milev.nikola.cwl_test.rest_client.authentication.AuthenticateUserRequestBody;
-import com.milev.nikola.cwl_test.rest_client.authentication.AuthorizationResponse;
+import com.milev.nikola.cwl_test.rest_client.authentication.AuthorizationRegistrationResponse;
 import com.milev.nikola.cwl_test.rest_client.charities.Charity;
 
 import java.io.IOException;
@@ -96,14 +97,14 @@ public class RestManager {
 
     // Login
     public void login(String email, String password, final LoginAttemptListener loginAttemptFinishedListener){
-        Call<AuthorizationResponse> call = reSupplyAPI.authenticateEmail(new AuthenticateUserRequestBody(email, password));
-        call.enqueue(new Callback<AuthorizationResponse>() {
+        Call<AuthorizationRegistrationResponse> call = reSupplyAPI.authenticateEmail(new AuthenticateUserRequestBody(email, password));
+        call.enqueue(new Callback<AuthorizationRegistrationResponse>() {
             @Override
-            public void onResponse(Call<AuthorizationResponse> call, retrofit2.Response<AuthorizationResponse> response) {
+            public void onResponse(Call<AuthorizationRegistrationResponse> call, retrofit2.Response<AuthorizationRegistrationResponse> response) {
                 if(response.isSuccessful()){
-                    AuthorizationResponse authorizationResponse= response.body();
+                    AuthorizationRegistrationResponse authorizationRegistrationResponse = response.body();
                     Log.d(TAG, "Success: " + response.toString());
-                    RestManager.this.updateState(authorizationResponse);
+                    RestManager.this.updateState(authorizationRegistrationResponse);
                     if(loginAttemptFinishedListener != null){
                         loginAttemptFinishedListener.onLoginSuccess();
                     }
@@ -120,7 +121,7 @@ public class RestManager {
             }
 
             @Override
-            public void onFailure(Call<AuthorizationResponse> call, Throwable t) {
+            public void onFailure(Call<AuthorizationRegistrationResponse> call, Throwable t) {
                 Log.d(TAG, "Failure: " +t.getMessage());
                 if(loginAttemptFinishedListener != null){
                     loginAttemptFinishedListener.onLoginFailure("Login failed");
@@ -184,7 +185,7 @@ public class RestManager {
     }
 
 
-    private void updateState(AuthorizationResponse response) {
+    private void updateState(AuthorizationRegistrationResponse response) {
         this.userEmail = response.getUserEmail();
         this.token = response.getToken();
         this.refreshToken = response.getRefreshToken();
@@ -197,6 +198,35 @@ public class RestManager {
         refreshToken = null;
     }
 
-    // Register
+
+    public void registerUser(String firstName, String lastName, String email, String password, final RegisterUserListener registerUserListener){
+        Call<AuthorizationRegistrationResponse> call = reSupplyAPI.registerUser(new RegisterUserBody(firstName, lastName, email, password));
+
+        call.enqueue(new Callback<AuthorizationRegistrationResponse>() {
+
+            @Override
+            public void onResponse(Call<AuthorizationRegistrationResponse> call, retrofit2.Response<AuthorizationRegistrationResponse> response) {
+                if(response.isSuccessful()){
+                    RestManager.this.updateState(response.body());
+                }
+
+                if(registerUserListener != null){
+                    if(response.isSuccessful()){
+                        registerUserListener.onRegisterUserSuccess();
+                    } else {
+                        registerUserListener.onRegisterUserFailure();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AuthorizationRegistrationResponse> call, Throwable t) {
+                if(registerUserListener != null){
+                        registerUserListener.onRegisterUserFailure();
+                }
+            }
+        });
+
+    }
 
 }

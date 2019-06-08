@@ -6,7 +6,7 @@ import com.milev.nikola.cwl_test.rest_client.authentication.Authorization;
 
 import java.util.List;
 
-public class AuthorizationResponse {
+public class AuthorizationRegistrationResponse {
     @SerializedName("user")
     private User user;
 
