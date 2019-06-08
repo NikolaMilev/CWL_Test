@@ -18,6 +18,9 @@ public class Charity {
     @SerializedName("item_types")
     private List<ItemType> itemTypes ;
 
+    @SerializedName("photo")
+    private CharityPhoto charityPhoto;
+
     public boolean hasItemType(String itemType){
         for(ItemType type : itemTypes){
             if(type.getName().equals(itemType)){
@@ -29,6 +32,22 @@ public class Charity {
 
     public String getName(){
         return this.name;
+    }
+
+    public int getRatingCount(){
+        return ratingCount;
+    }
+
+    public double getAverageRating(){
+       return averageRating;
+    }
+
+    public String getPhotoURL(){
+        if(charityPhoto != null){
+            return charityPhoto.getPhotoURL();
+        } else {
+            return null;
+        }
     }
 
     @Override

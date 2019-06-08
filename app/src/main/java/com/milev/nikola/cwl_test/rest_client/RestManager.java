@@ -6,7 +6,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.milev.nikola.cwl_test.listeners.GetCharitiesListener;
 import com.milev.nikola.cwl_test.listeners.LoginAttemptListener;
-import com.milev.nikola.cwl_test.rest_client.authentication.AuthenticateRequestBodyUser;
+import com.milev.nikola.cwl_test.listeners.ResetPasswordListener;
+import com.milev.nikola.cwl_test.rest_client.authentication.AuthenticateUserRequestBody;
 import com.milev.nikola.cwl_test.rest_client.authentication.AuthorizationResponse;
 import com.milev.nikola.cwl_test.rest_client.charities.Charity;
 
@@ -28,6 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RestManager {
 
+    public final static String BASE_URL_IMG = "http://main-service.staging.resupply.tech";
     public final static String BASE_URL = "http://main-service.staging.resupply.tech/api/v2/";
 
     private static final String TAG = "RestManager";
@@ -94,7 +96,7 @@ public class RestManager {
 
     // Login
     public void login(String email, String password, final LoginAttemptListener loginAttemptFinishedListener){
-        Call<AuthorizationResponse> call = reSupplyAPI.authenticateEmail(new AuthenticateRequestBodyUser(email, password));
+        Call<AuthorizationResponse> call = reSupplyAPI.authenticateEmail(new AuthenticateUserRequestBody(email, password));
         call.enqueue(new Callback<AuthorizationResponse>() {
             @Override
             public void onResponse(Call<AuthorizationResponse> call, retrofit2.Response<AuthorizationResponse> response) {
@@ -154,9 +156,32 @@ public class RestManager {
     }
 
 
-    // Register
-    // Logout
+
     // Reset password
+    public void requestResetPassword(String email, final ResetPasswordListener resetPasswordListener){
+        Call<Void> call = reSupplyAPI.resetPassword(new ResetPasswordRequestBody(email));
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, retrofit2.Response<Void> response) {
+                if(resetPasswordListener != null){
+                    if(response.isSuccessful()){
+                        resetPasswordListener.onResetPasswordSuccess();
+                    } else {
+                        resetPasswordListener.onResetPasswordFail();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                if(resetPasswordListener != null){
+                    resetPasswordListener.onResetPasswordFail();
+                }
+
+            }
+        });
+    }
 
 
     private void updateState(AuthorizationResponse response) {
@@ -165,9 +190,13 @@ public class RestManager {
         this.refreshToken = response.getRefreshToken();
     }
 
+    // Logout
     public void resetState(){
         userEmail = null;
         token = null;
         refreshToken = null;
     }
+
+    // Register
+
 }

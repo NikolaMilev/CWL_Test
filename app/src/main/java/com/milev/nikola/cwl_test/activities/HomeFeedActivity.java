@@ -6,10 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.milev.nikola.cwl_test.R;
@@ -40,9 +45,23 @@ public class HomeFeedActivity extends AppCompatActivity implements GetCharitiesL
             }
         });
 
-        RestManager.getInstance().getCharities("20110", this);
+        EditText editTextEnterZipCode = findViewById(R.id.editTextEnterZipCode);
 
+        editTextEnterZipCode.addTextChangedListener(new TextWatcher() {
 
+            // the user's changes are saved here
+            public void onTextChanged(CharSequence c, int start, int before, int count) {
+                RestManager.getInstance().getCharities(c.toString(), HomeFeedActivity.this);
+            }
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+                // this space intentionally left blank
+            }
+
+            public void afterTextChanged(Editable c) {
+                // this one too
+            }
+        });
 
     }
 
@@ -55,7 +74,7 @@ public class HomeFeedActivity extends AppCompatActivity implements GetCharitiesL
         } else {
             Log.d(TAG, "CHARITIES NULL");
         }
-        Toast.makeText(this.getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+//        Toast.makeText(this.getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewCharities);
 

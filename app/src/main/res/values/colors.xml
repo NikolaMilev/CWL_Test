@@ -3,7 +3,7 @@
     <color name="colorPrimary">#5199d3</color>
     <color name="colorPrimaryDark">#5199d3</color>
     <color name="windowBackground">#5199d3</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#da3649</color>
 
     <!--The colors for the login screen-->
     <color name="bgBlue">#5199d3</color>
@@ -13,6 +13,7 @@
     <color name="almostWhite">#f2f2f2</color>
     <color name="lightGray">#c0c0c0</color>
 
+    <color name="dark_blue">#23679e</color>
 
 
 

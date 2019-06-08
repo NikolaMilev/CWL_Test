@@ -1,6 +1,6 @@
 package com.milev.nikola.cwl_test.rest_client;
 
-import com.milev.nikola.cwl_test.rest_client.authentication.AuthenticateRequestBodyUser;
+import com.milev.nikola.cwl_test.rest_client.authentication.AuthenticateUserRequestBody;
 import com.milev.nikola.cwl_test.rest_client.authentication.AuthorizationResponse;
 import com.milev.nikola.cwl_test.rest_client.charities.Charity;
 
@@ -16,12 +16,15 @@ import retrofit2.http.Query;
 public interface ReSupplyAPI {
 
     @POST("users/authenticate")
-    Call<AuthorizationResponse> authenticateEmail(@Body AuthenticateRequestBodyUser user);
+    Call<AuthorizationResponse> authenticateEmail(@Body AuthenticateUserRequestBody user);
 
     @GET("charities")
     Call<List<Charity>> getCharities(@Query("zip") String zip, @Header("Authorization") String token) ;
 
+    @POST("users/reset_password")
+    Call<Void> resetPassword(@Body ResetPasswordRequestBody resetPasswordRequestBody) ;
+
     // Register
-    // Reset password?
+
 
 }

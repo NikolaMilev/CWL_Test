@@ -3,7 +3,7 @@
     <dimen name="normal_font_size">17sp</dimen>
     <dimen name="slightly_smaller_font_size">14sp</dimen>
     <dimen name="large_font_size">20sp</dimen>
-    <dimen name="small_font_size">10sp</dimen>
+    <dimen name="small_font_size">9sp</dimen>
 
     <dimen name="text_box_padding">15dp</dimen>
     <dimen name="border_radius">10dp</dimen>
