@@ -3,6 +3,7 @@ package com.milev.nikola.cwl_test.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -60,7 +61,12 @@ public class HomeFeedActivity extends AppCompatActivity implements GetCharitiesL
 
         CharityAdapter charityAdapter = new CharityAdapter(charities);
         recyclerView.setAdapter(charityAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+
+//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
+//        recyclerView.addItemDecoration(dividerItemDecoration);
     }
 
     @Override

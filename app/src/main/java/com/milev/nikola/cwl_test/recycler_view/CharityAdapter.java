@@ -39,7 +39,7 @@ public class CharityAdapter extends RecyclerView.Adapter<CharityAdapter.ViewHold
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View contactView = inflater.inflate(R.layout.item_view, parent, false);
+        View contactView = inflater.inflate(R.layout.recycler_item_view, parent, false);
 
         // Return a new holder instance
         ViewHolder viewHolder = new ViewHolder(contactView);
@@ -55,7 +55,7 @@ public class CharityAdapter extends RecyclerView.Adapter<CharityAdapter.ViewHold
         // Set item views based on your views and data model
         TextView textView = viewHolder.textViewName;
 
-        textView.setText(charity.getName());
+        //textView.setText(charity.getName());
     }
 
     // Returns the total count of items in the list

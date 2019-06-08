@@ -60,10 +60,10 @@ public class LoginActivity extends AppCompatActivity implements LoginAttemptList
     public void onStart(){
         super.onStart();
         // Reset the fields
-        EditText editTextEmail = findViewById(R.id.editTextEmail);
-        editTextEmail.setText("");
-        EditText editTextPassword = findViewById(R.id.editTextPassword);
-        editTextPassword.setText("");
+//        EditText editTextEmail = findViewById(R.id.editTextEmail);
+//        editTextEmail.setText("");
+//        EditText editTextPassword = findViewById(R.id.editTextPassword);
+//        editTextPassword.setText("");
         TextView invalidTextView = findViewById(R.id.textViewEmailPasswordInvalid);
         invalidTextView.setVisibility(View.INVISIBLE);
     }
