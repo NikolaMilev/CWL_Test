@@ -38,6 +38,7 @@
         <Button
             android:id="@+id/buttonLogout"
             android:layout_width="match_parent"
+            android:foreground="?android:attr/selectableItemBackground"
             android:layout_height="match_parent"
             android:background="@android:color/white"
             android:text="LOGOUT"
@@ -67,6 +68,7 @@
             android:hint="Enter zip code"
             android:inputType="textPersonName"
             android:padding="@dimen/button_margin"
+            android:textColor="@color/darkGray"
             android:textColorHint="@color/darkGray" />
     </android.support.v7.widget.CardView>
 

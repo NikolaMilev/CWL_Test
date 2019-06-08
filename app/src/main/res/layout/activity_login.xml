@@ -90,7 +90,9 @@
                 android:hint="@string/email_hint"
                 android:inputType="textEmailAddress"
                 android:padding="@dimen/button_margin"
-                android:text="nikola@gmail.com" />
+                android:text="nikola@gmail.com"
+                android:textColor="@color/darkGray"
+                android:textColorHint="@color/lightGray" />
 
             <EditText
                 android:id="@+id/editTextPassword"
@@ -103,7 +105,9 @@
                 android:hint="@string/password_hint"
                 android:inputType="textPassword"
                 android:padding="@dimen/button_margin"
-                android:text="tajna" />
+                android:text="tajna"
+                android:textColor="@color/darkGray"
+                android:textColorHint="@color/lightGray" />
 
             <TextView
                 android:id="@+id/textViewEmailPasswordInvalid"
@@ -120,8 +124,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
                 android:layout_marginBottom="@dimen/button_margin"
-                android:clickable="true"
-                android:focusable="true"
                 android:elevation="@dimen/elevation"
                 app:cardCornerRadius="@dimen/border_radius">
 
@@ -132,6 +134,7 @@
                     android:background="@color/bgBlue"
                     android:text="@string/login_button"
                     android:textAllCaps="false"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/normal_font_size" />
             </android.support.v7.widget.CardView>
@@ -142,6 +145,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:clickable="true"
+                android:focusable="true"
                 android:text="@string/forgot_password_text_field"
                 android:textSize="@dimen/normal_font_size" />
         </LinearLayout>
@@ -155,8 +159,6 @@
         android:layout_marginBottom="@dimen/button_margin"
         android:layout_marginEnd="@dimen/double_button_margin"
         android:layout_marginStart="@dimen/double_button_margin"
-        android:clickable="true"
-        android:focusable="true"
         app:cardCornerRadius="@dimen/border_radius"
         app:cardElevation="@dimen/elevation"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -169,6 +171,7 @@
         <Button
             android:id="@+id/buttonContinueWithFacebook"
             android:layout_width="match_parent"
+            android:foreground="?android:attr/selectableItemBackground"
             android:layout_height="match_parent"
             android:background="@color/denimBlue"
             android:text="@string/continue_facebook"
@@ -187,8 +190,6 @@
         android:layout_marginBottom="@dimen/button_margin"
         android:layout_marginEnd="@dimen/double_button_margin"
         android:layout_marginStart="@dimen/double_button_margin"
-        android:clickable="true"
-        android:focusable="true"
         app:cardCornerRadius="@dimen/border_radius"
         app:cardElevation="@dimen/elevation"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -203,6 +204,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/pinkRed"
+            android:foreground="?android:attr/selectableItemBackground"
             android:text="@string/register_email"
             android:textAllCaps="false"
             android:textColor="@android:color/white"

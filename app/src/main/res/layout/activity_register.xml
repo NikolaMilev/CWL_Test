@@ -96,7 +96,9 @@
                     android:ems="10"
                     android:hint="@string/first_name_hint"
                     android:inputType="textPersonName"
-                    android:padding="@dimen/button_margin" />
+                    android:padding="@dimen/button_margin"
+                    android:textColor="@color/darkGray"
+                    android:textColorHint="@color/lightGray" />
 
                 <EditText
                     android:id="@+id/editTextLastName"
@@ -110,7 +112,9 @@
                     android:ems="10"
                     android:hint="@string/last_name_hint"
                     android:inputType="textPersonName"
-                    android:padding="@dimen/button_margin" />
+                    android:padding="@dimen/button_margin"
+                    android:textColor="@color/darkGray"
+                    android:textColorHint="@color/lightGray" />
             </LinearLayout>
 
             <EditText
@@ -123,7 +127,9 @@
                 android:ems="10"
                 android:hint="@string/email_hint"
                 android:inputType="textEmailAddress"
-                android:padding="@dimen/button_margin" />
+                android:padding="@dimen/button_margin"
+                android:textColor="@color/darkGray"
+                android:textColorHint="@color/lightGray" />
 
             <EditText
                 android:id="@+id/editTextPassword"
@@ -135,7 +141,9 @@
                 android:ems="10"
                 android:hint="@string/password_hint"
                 android:inputType="textPassword"
-                android:padding="@dimen/button_margin" />
+                android:padding="@dimen/button_margin"
+                android:textColor="@color/darkGray"
+                android:textColorHint="@color/lightGray" />
 
             <EditText
                 android:id="@+id/editTextConfirmPassword"
@@ -147,15 +155,15 @@
                 android:ems="10"
                 android:hint="@string/confirm_password_hint"
                 android:inputType="textPassword"
-                android:padding="@dimen/button_margin" />
+                android:padding="@dimen/button_margin"
+                android:textColor="@color/darkGray"
+                android:textColorHint="@color/lightGray" />
 
             <android.support.v7.widget.CardView
                 android:id="@+id/cardViewRegisterButton"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
                 android:layout_marginBottom="@dimen/button_margin"
-                android:clickable="true"
-                android:focusable="true"
                 android:elevation="@dimen/elevation"
                 app:cardCornerRadius="@dimen/border_radius">
 
@@ -163,6 +171,7 @@
                     android:id="@+id/buttonRegister"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:background="@color/bgBlue"
                     android:text="@string/register_button"
                     android:textAllCaps="false"
@@ -180,8 +189,6 @@
         android:layout_margin="@dimen/button_margin"
         android:layout_marginEnd="@dimen/double_button_margin"
         android:layout_marginStart="@dimen/double_button_margin"
-        android:clickable="true"
-        android:focusable="true"
         android:paddingEnd="@dimen/double_button_margin"
         android:paddingStart="@dimen/double_button_margin"
         app:cardCornerRadius="@dimen/border_radius"
@@ -196,6 +203,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/denimBlue"
+            android:foreground="?android:attr/selectableItemBackground"
             android:text="@string/continue_facebook"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
