@@ -23,7 +23,7 @@ public class Charity {
 
     public boolean hasItemType(String itemType){
         for(ItemType type : itemTypes){
-            if(type.getName().equals(itemType)){
+            if(type.getName().equalsIgnoreCase(itemType)){
                 return true;
             }
         }
@@ -67,5 +67,33 @@ public class Charity {
         sb.append("]");
 
         return sb.toString();
+    }
+
+    public boolean acceptsFurniture(){
+        return this.hasItemType("furniture");
+    }
+
+    public boolean acceptsClothes(){
+        return this.hasItemType("clothing");
+    }
+
+    public boolean acceptsElectronics(){
+        return this.hasItemType("electronics");
+    }
+
+    public boolean acceptsAppliances(){
+        return this.hasItemType("appliances");
+    }
+
+    public boolean acceptsHousehold(){
+        return this.hasItemType("household");
+    }
+
+    public boolean acceptsBooks(){
+        return this.hasItemType("books");
+    }
+
+    public boolean acceptsMisc(){
+        return this.hasItemType("miscellaneous");
     }
 }

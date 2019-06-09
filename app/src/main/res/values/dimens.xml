@@ -10,7 +10,7 @@
     <dimen name="elevation">20dp</dimen>
 
 
-    <dimen name="button_height">48dp</dimen>
+    <dimen name="button_height">50dp</dimen>
     <dimen name="double_button_height">96dp</dimen>
     <dimen name="triple_button_height">144dp</dimen>
 

@@ -124,6 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:layout_marginBottom="-2dp"
             android:layout_marginEnd="-2dp"
             android:background="@drawable/cwl_rectangle_8"
             android:paddingBottom="@dimen/button_margin"
@@ -160,8 +161,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:backgroundTint="@color/lightGray"
-                        app:srcCompat="@drawable/cwl_furniture" />
+                        app:srcCompat="@drawable/cwl_furniture_inactive" />
 
                     <TextView
                         android:id="@+id/textViewFurniture"
@@ -170,6 +170,7 @@
                         android:layout_weight="1"
                         android:gravity="center_horizontal"
                         android:text="Furniture"
+                        android:textColor="@color/inactiveGray"
                         android:textSize="@dimen/small_font_size"
                         android:textStyle="bold" />
 
@@ -186,7 +187,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/cwl_clothing" />
+                        app:srcCompat="@drawable/cwl_clothing_inactive" />
 
                     <TextView
                         android:id="@+id/textViewClothes"
@@ -195,8 +196,9 @@
                         android:layout_weight="1"
                         android:gravity="center_horizontal"
                         android:text="Clothes"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/small_font_size" />
+                        android:textColor="@color/inactiveGray"
+                        android:textSize="@dimen/small_font_size"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -210,7 +212,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/cwl_elecronics" />
+                        app:srcCompat="@drawable/cwl_elecronics_inactive" />
 
                     <TextView
                         android:id="@+id/textViewElectronics"
@@ -219,8 +221,9 @@
                         android:layout_weight="1"
                         android:gravity="center_horizontal"
                         android:text="Electronics"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/small_font_size" />
+                        android:textColor="@color/inactiveGray"
+                        android:textSize="@dimen/small_font_size"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -234,17 +237,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/cwl_appliances" />
+                        app:srcCompat="@drawable/cwl_appliances_inactive" />
 
                     <TextView
                         android:id="@+id/textViewAppliances"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textStyle="bold"
                         android:gravity="center_horizontal"
                         android:text="Appliances"
-                        android:textSize="@dimen/small_font_size" />
+                        android:textColor="@color/inactiveGray"
+                        android:textSize="@dimen/small_font_size"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -258,17 +262,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/cwl_household" />
+                        app:srcCompat="@drawable/cwl_household_inactive" />
 
                     <TextView
                         android:id="@+id/textViewHousehold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textStyle="bold"
                         android:gravity="center_horizontal"
                         android:text="Household"
-                        android:textSize="@dimen/small_font_size" />
+                        android:textColor="@color/inactiveGray"
+                        android:textSize="@dimen/small_font_size"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -282,17 +287,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/cwl_books" />
+                        app:srcCompat="@drawable/cwl_books_inactive" />
 
                     <TextView
                         android:id="@+id/textViewBooks"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textStyle="bold"
                         android:gravity="center_horizontal"
                         android:text="Books"
-                        android:textSize="@dimen/small_font_size" />
+                        android:textColor="@color/inactiveGray"
+                        android:textSize="@dimen/small_font_size"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -306,17 +312,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/cwl_miscellaneous" />
+                        app:srcCompat="@drawable/cwl_miscellaneous_inactive" />
 
                     <TextView
                         android:id="@+id/textViewMisc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textStyle="bold"
                         android:gravity="center_horizontal"
                         android:text="Misc."
-                        android:textSize="@dimen/small_font_size" />
+                        android:textColor="@color/inactiveGray"
+                        android:textSize="@dimen/small_font_size"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
             </LinearLayout>
