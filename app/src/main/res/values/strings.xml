@@ -28,6 +28,32 @@
 
     <string name="email_matcher">^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$</string>
     <string name="option_unavailable">Sorry, this option is currently unavailable.</string>
+    <string name="please_wait">Please wait...</string>
+
+
+    <string name="message">Message</string>
+    <string name="name">name</string>
+    <string name="default_ratings_text">17 Ratings  |  4.5</string>
+    <string name="accepting">Accepting</string>
+    <string name="furniture">Furniture</string>
+    <string name="clothes">Clothes</string>
+    <string name="electronics">Electronics</string>
+    <string name="household">Household</string>
+    <string name="books">Books</string>
+    <string name="misc">Misc.</string>
+    <string name="appliances">Appliances.</string>
+    <string name="donate">donate</string>
+    <string name="pick_a_charity">pick a charity</string>
+    <string name="logout">logout</string>
+
+    <string name="enter_zip_hint">Enter zip code</string>
+    <string name="donate_capitalized">Donate</string>
+    <string name="my_donations">My Donations</string>
+    <string name="inbox">Inbox</string>
+    <string name="profile">Profile</string>
+
+
+
 
 
 

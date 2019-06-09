@@ -25,7 +25,7 @@ public interface ReSupplyAPI {
     Call<Void> resetPassword(@Body ResetPasswordRequestBody resetPasswordRequestBody) ;
 
     @POST("users")
-    Call<AuthorizationRegistrationResponse> registerUser(@Body RegisterUserBody registerUserBody) ;
+    Call<AuthorizationRegistrationResponse> registerUser(@Body RegisterUserRequestBody registerUserRequestBody) ;
 
 
 }

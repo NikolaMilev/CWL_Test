@@ -2,7 +2,6 @@ package com.milev.nikola.cwl_test.rest_client.authentication;
 
 import com.google.gson.annotations.SerializedName;
 import com.milev.nikola.cwl_test.rest_client.User;
-import com.milev.nikola.cwl_test.rest_client.authentication.Authorization;
 
 import java.util.List;
 

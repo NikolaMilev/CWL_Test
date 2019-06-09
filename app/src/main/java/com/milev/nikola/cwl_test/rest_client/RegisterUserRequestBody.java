@@ -2,7 +2,7 @@ package com.milev.nikola.cwl_test.rest_client;
 
 import com.google.gson.annotations.SerializedName;
 
-public class RegisterUserBody {
+public class RegisterUserRequestBody {
 
     @SerializedName("first_name")
     private String firstName;
@@ -19,7 +19,7 @@ public class RegisterUserBody {
     @SerializedName("provider")
     private String provider;
 
-    public RegisterUserBody(String firstName, String lastName, String email, String password){
+    public RegisterUserRequestBody(String firstName, String lastName, String email, String password){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

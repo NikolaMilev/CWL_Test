@@ -200,7 +200,7 @@ public class RestManager {
 
 
     public void registerUser(String firstName, String lastName, String email, String password, final RegisterUserListener registerUserListener){
-        Call<AuthorizationRegistrationResponse> call = reSupplyAPI.registerUser(new RegisterUserBody(firstName, lastName, email, password));
+        Call<AuthorizationRegistrationResponse> call = reSupplyAPI.registerUser(new RegisterUserRequestBody(firstName, lastName, email, password));
 
         call.enqueue(new Callback<AuthorizationRegistrationResponse>() {
 

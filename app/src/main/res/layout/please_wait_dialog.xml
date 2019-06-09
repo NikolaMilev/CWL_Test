@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/button_margin"
@@ -30,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/double_button_margin"
             android:layout_marginTop="@dimen/double_button_margin"
-            android:text="Please wait..."
+            android:text="@string/please_wait"
             android:textSize="@dimen/large_font_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
