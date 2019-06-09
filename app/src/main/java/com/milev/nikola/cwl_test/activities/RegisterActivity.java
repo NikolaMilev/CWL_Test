@@ -1,5 +1,7 @@
 package com.milev.nikola.cwl_test.activities;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +14,14 @@ import com.milev.nikola.cwl_test.R;
 import com.milev.nikola.cwl_test.listeners.RegisterUserListener;
 import com.milev.nikola.cwl_test.rest_client.RestManager;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class RegisterActivity extends AppCompatActivity implements RegisterUserListener{
+
+    private AlertDialog pleaseWait = null;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,30 +40,80 @@ public class RegisterActivity extends AppCompatActivity implements RegisterUserL
                 String password = editTextPassword.getText().toString();
                 String confirmPassword = editTextConfirmPassword.getText().toString();
 
-
-                if(!editTextPassword.getText().toString().equals(editTextConfirmPassword.getText().toString())){
-                    Toast.makeText(RegisterActivity.this.getApplicationContext(), "Passwords not matching.", Toast.LENGTH_LONG).show();
-                    return;
-                }
-
                 String firstName = editTextFirstName.getText().toString();
                 String lastName = editTextLastName.getText().toString();
                 String email = editTextEmail.getText().toString();
 
-                RestManager.getInstance().registerUser(firstName, lastName, email, password, RegisterActivity.this);
+                if(validateInput(firstName, lastName, email, password, confirmPassword)){
+                    showDialog();
+                    RestManager.getInstance().registerUser(firstName, lastName, email, password, RegisterActivity.this);
+                }
             }
         });
 
     }
     @Override
     public void onRegisterUserSuccess() {
+        hideDialog();
         Toast.makeText(RegisterActivity.this.getApplicationContext(), "Succesfully registered. Welcome!", Toast.LENGTH_LONG).show();
         startActivity(new Intent(RegisterActivity.this, HomeFeedActivity.class));
     }
 
     @Override
     public void onRegisterUserFailure() {
+        hideDialog();
         Toast.makeText(RegisterActivity.this.getApplicationContext(), "Failed to register.", Toast.LENGTH_LONG).show();
     }
+
+    private String checkValidInput(String firstName, String lastName, String email, String password, String confirmPassword){
+        if(firstName.length() == 0){
+            return "Invalid first name.";
+        } else if(lastName.length() == 0){
+            return "Invalid last name.";
+        } else {
+            Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+            Matcher matcher = p.matcher(email);
+            if(!matcher.find()){
+                return "Email invalid.";
+            }
+            if(!confirmPassword.equals(password)){
+                return "Passwords not matching.";
+            }
+
+            return "";
+        }
+    }
+
+    private boolean validateInput(String firstName, String lastName, String email, String password, String confirmPassword){
+        String res = checkValidInput(firstName, lastName, email, password, confirmPassword);
+        if(res.equals("")){
+            return true;
+        } else {
+            Toast.makeText(this.getApplicationContext(), res, Toast.LENGTH_LONG).show();
+            return false;
+        }
+    }
+
+
+    private void showDialog(){
+        if(pleaseWait == null){
+            AlertDialog.Builder pleaseWaitBuilder = new AlertDialog.Builder(RegisterActivity.this);
+            pleaseWaitBuilder.setCancelable(false);
+            pleaseWaitBuilder.setView(R.layout.please_wait_dialog);
+            pleaseWait = pleaseWaitBuilder.create();
+        }
+
+        if(!this.isFinishing()){
+            pleaseWait.show();
+        }
+
+    }
+
+    private void hideDialog(){
+        if(pleaseWait != null && !this.isFinishing()){
+            pleaseWait.dismiss();
+        }
+    }
+
 
 }

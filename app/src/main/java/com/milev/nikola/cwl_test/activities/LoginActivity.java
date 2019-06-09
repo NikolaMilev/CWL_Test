@@ -1,5 +1,6 @@
 package com.milev.nikola.cwl_test.activities;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import com.milev.nikola.cwl_test.rest_client.RestManager;
 public class LoginActivity extends AppCompatActivity implements LoginAttemptListener{
 
     private static final String TAG = "LoginActivity";
+    private AlertDialog pleaseWait;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,7 @@ public class LoginActivity extends AppCompatActivity implements LoginAttemptList
                 String emailString = editTextEmail.getText().toString();
                 String passwordString = editTextPassword.getText().toString();
                 Log.d(TAG, "Login attempt. Email: " + emailString + ", Password: " + passwordString);
-
+                showDialog();
                 RestManager.getInstance().login(emailString, passwordString, LoginActivity.this);
             }
         });
@@ -75,6 +77,7 @@ public class LoginActivity extends AppCompatActivity implements LoginAttemptList
     public void onLoginSuccess() {
         // Go to feed screen
 //        Toast.makeText(this.getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+        hideDialog();
         startActivity(new Intent(this, HomeFeedActivity.class));
     }
 
@@ -82,8 +85,29 @@ public class LoginActivity extends AppCompatActivity implements LoginAttemptList
     public void onLoginFailure(String message) {
         // Tell the user
 //        Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_LONG).show();
+        hideDialog();
         TextView invalidTextView = findViewById(R.id.textViewEmailPasswordInvalid);
         invalidTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showDialog(){
+        if(pleaseWait == null){
+            AlertDialog.Builder pleaseWaitBuilder = new AlertDialog.Builder(LoginActivity.this);
+            pleaseWaitBuilder.setCancelable(false);
+            pleaseWaitBuilder.setView(R.layout.please_wait_dialog);
+            pleaseWait = pleaseWaitBuilder.create();
+        }
+
+        if(!this.isFinishing()){
+            pleaseWait.show();
+        }
+
+    }
+
+    private void hideDialog(){
+        if(pleaseWait != null && !this.isFinishing()){
+            pleaseWait.dismiss();
+        }
     }
 
 }

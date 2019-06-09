@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayoutLogin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bgBlue"
-    android:padding="0dp"
     android:visibility="visible">
 
     <TextView
@@ -31,30 +31,29 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
+        android:importantForAccessibility="no"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:importantForAccessibility="no"
         app:srcCompat="@drawable/resupply_logo_03" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardViewLogin"
-        android:layout_width="343dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/triple_button_height"
-        android:layout_marginEnd="@dimen/button_margin"
-        android:layout_marginStart="@dimen/button_margin"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         app:cardCornerRadius="@dimen/border_radius"
         app:cardElevation="@dimen/elevation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="332dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center_horizontal"
             android:orientation="vertical"
@@ -132,9 +131,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/bgBlue"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:text="@string/login_button"
                     android:textAllCaps="false"
-                    android:foreground="?android:attr/selectableItemBackground"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/normal_font_size" />
             </android.support.v7.widget.CardView>
@@ -157,8 +156,8 @@
         android:layout_height="@dimen/button_height"
         android:layout_margin="@dimen/button_margin"
         android:layout_marginBottom="@dimen/button_margin"
-        android:layout_marginEnd="@dimen/double_button_margin"
-        android:layout_marginStart="@dimen/double_button_margin"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         app:cardCornerRadius="@dimen/border_radius"
         app:cardElevation="@dimen/elevation"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -171,9 +170,9 @@
         <Button
             android:id="@+id/buttonContinueWithFacebook"
             android:layout_width="match_parent"
-            android:foreground="?android:attr/selectableItemBackground"
             android:layout_height="match_parent"
             android:background="@color/denimBlue"
+            android:foreground="?android:attr/selectableItemBackground"
             android:text="@string/continue_facebook"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
@@ -188,16 +187,15 @@
         android:layout_height="@dimen/button_height"
         android:layout_margin="@dimen/button_margin"
         android:layout_marginBottom="@dimen/button_margin"
-        android:layout_marginEnd="@dimen/double_button_margin"
-        android:layout_marginStart="@dimen/double_button_margin"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         app:cardCornerRadius="@dimen/border_radius"
         app:cardElevation="@dimen/elevation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/cardViewLogin"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/cardViewLogin"
         app:layout_constraintTop_toBottomOf="@+id/cardViewContinueWithFacebook"
-        app:layout_constraintVertical_bias="0.984">
+        app:layout_constraintVertical_bias="0.0">
 
         <Button
             android:id="@+id/buttonRegisterWithEmail"
