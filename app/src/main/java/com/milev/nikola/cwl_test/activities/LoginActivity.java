@@ -18,10 +18,9 @@ import com.milev.nikola.cwl_test.rest_client.RestManager;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LoginActivity extends AppCompatActivity implements LoginAttemptListener{
+public class LoginActivity extends InputResponseActivity implements LoginAttemptListener{
 
     private static final String TAG = "LoginActivity";
-    private AlertDialog pleaseWait;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,16 +91,8 @@ public class LoginActivity extends AppCompatActivity implements LoginAttemptList
 
     }
 
-    @Override
-    public void onStart(){
-        super.onStart();
-        resetInput();
-        setInputEnabled(true);
 
-}
-
-
-    private void setInputEnabled(boolean enabled){
+    protected void setInputEnabled(boolean enabled){
         EditText editTextEmail = findViewById(R.id.editTextEmail);
         editTextEmail.setEnabled(enabled);
         EditText editTextPassword = findViewById(R.id.editTextPassword);
@@ -117,7 +108,7 @@ public class LoginActivity extends AppCompatActivity implements LoginAttemptList
         buttonRegisterWithEmail.setEnabled(enabled);
     }
 
-    private void resetInput(){
+    protected void resetInput(){
         // Reset the fields
         EditText editTextEmail = findViewById(R.id.editTextEmail);
         editTextEmail.setText("");
@@ -146,26 +137,6 @@ public class LoginActivity extends AppCompatActivity implements LoginAttemptList
         setInputEnabled(true);
         TextView invalidTextView = findViewById(R.id.textViewEmailPasswordInvalid);
         invalidTextView.setVisibility(View.VISIBLE);
-    }
-
-    private void showDialog(){
-        if(pleaseWait == null){
-            AlertDialog.Builder pleaseWaitBuilder = new AlertDialog.Builder(LoginActivity.this);
-            pleaseWaitBuilder.setCancelable(false);
-            pleaseWaitBuilder.setView(R.layout.please_wait_dialog);
-            pleaseWait = pleaseWaitBuilder.create();
-        }
-
-        if(!this.isFinishing()){
-            pleaseWait.show();
-        }
-
-    }
-
-    private void hideDialog(){
-        if(pleaseWait != null && !this.isFinishing()){
-            pleaseWait.dismiss();
-        }
     }
 
     private String checkValidInput(String email, String password){

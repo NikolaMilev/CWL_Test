@@ -18,10 +18,7 @@ import com.milev.nikola.cwl_test.rest_client.RestManager;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegisterActivity extends AppCompatActivity implements RegisterUserListener{
-
-    private AlertDialog pleaseWait = null;
-
+public class RegisterActivity extends InputResponseActivity implements RegisterUserListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,8 +106,6 @@ public class RegisterActivity extends AppCompatActivity implements RegisterUserL
                 return "Passwords not matching.";
             }
 
-
-
             return "";
         }
     }
@@ -126,27 +121,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterUserL
     }
 
 
-    private void showDialog(){
-        if(pleaseWait == null){
-            AlertDialog.Builder pleaseWaitBuilder = new AlertDialog.Builder(RegisterActivity.this);
-            pleaseWaitBuilder.setCancelable(false);
-            pleaseWaitBuilder.setView(R.layout.please_wait_dialog);
-            pleaseWait = pleaseWaitBuilder.create();
-        }
-
-        if(!this.isFinishing()){
-            pleaseWait.show();
-        }
-
-    }
-
-    private void hideDialog(){
-        if(pleaseWait != null && !this.isFinishing()){
-            pleaseWait.dismiss();
-        }
-    }
-
-    private void setInputEnabled(boolean enabled){
+    protected void setInputEnabled(boolean enabled){
         Button buttonRegister = findViewById(R.id.buttonRegister);
         buttonRegister.setEnabled(enabled);
 
@@ -166,7 +141,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterUserL
         editTextConfirmPassword.setEnabled(enabled);
     }
 
-    private void resetInput(){
+    protected void resetInput(){
         // Reset the fields
         EditText editTextFirstName = findViewById(R.id.editTextFirstName);
         editTextFirstName.setText("");
@@ -183,13 +158,4 @@ public class RegisterActivity extends AppCompatActivity implements RegisterUserL
         EditText editTextConfirmPassword = findViewById(R.id.editTextConfirmPassword);
         editTextConfirmPassword.setText("");
     }
-
-    @Override
-    public void onStart(){
-        super.onStart();
-        resetInput();
-        setInputEnabled(true);
-    }
-
-
 }

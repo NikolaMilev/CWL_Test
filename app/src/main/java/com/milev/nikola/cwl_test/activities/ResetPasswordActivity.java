@@ -15,7 +15,7 @@ import com.milev.nikola.cwl_test.rest_client.RestManager;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ResetPasswordActivity extends AppCompatActivity implements ResetPasswordListener{
+public class ResetPasswordActivity extends InputResponseActivity implements ResetPasswordListener{
 
     private AlertDialog pleaseWait;
 
@@ -86,7 +86,8 @@ public class ResetPasswordActivity extends AppCompatActivity implements ResetPas
         }
     }
 
-    private void setInputEnabled(boolean enabled){
+    @Override
+    protected void setInputEnabled(boolean enabled){
         EditText editTextEmail = findViewById(R.id.editTextEmail);
         editTextEmail.setEnabled(enabled);
 
@@ -95,37 +96,12 @@ public class ResetPasswordActivity extends AppCompatActivity implements ResetPas
         buttonSubmit.setEnabled(enabled);
     }
 
-    private void resetInput(){
+    @Override
+    protected void resetInput(){
         // Reset the fields
         EditText editTextEmail = findViewById(R.id.editTextEmail);
         editTextEmail.setText("");
     }
 
-    @Override
-    public void onStart(){
-        super.onStart();
-        resetInput();
-        setInputEnabled(true);
-    }
-
-    private void showDialog(){
-        if(pleaseWait == null){
-            AlertDialog.Builder pleaseWaitBuilder = new AlertDialog.Builder(ResetPasswordActivity.this);
-            pleaseWaitBuilder.setCancelable(false);
-            pleaseWaitBuilder.setView(R.layout.please_wait_dialog);
-            pleaseWait = pleaseWaitBuilder.create();
-        }
-
-        if(!this.isFinishing()){
-            pleaseWait.show();
-        }
-
-    }
-
-    private void hideDialog(){
-        if(pleaseWait != null && !this.isFinishing()){
-            pleaseWait.dismiss();
-        }
-    }
 
 }
