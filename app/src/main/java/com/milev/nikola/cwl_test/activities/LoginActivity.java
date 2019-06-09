@@ -1,7 +1,11 @@
 package com.milev.nikola.cwl_test.activities;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,11 +25,14 @@ import java.util.regex.Pattern;
 public class LoginActivity extends InputResponseActivity implements LoginAttemptListener{
 
     private static final String TAG = "LoginActivity";
+    private static final int CODE_PERMISSION_USE_INTERNET = 404;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        checkPermissions();
 
         // Logging in
         Button loginButton = findViewById(R.id.buttonLogin);
@@ -168,5 +175,25 @@ public class LoginActivity extends InputResponseActivity implements LoginAttempt
     public void onBackPressed() {
         super.onBackPressed();
         finishAffinity();
+    }
+
+    private void checkPermissions(){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, CODE_PERMISSION_USE_INTERNET);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case CODE_PERMISSION_USE_INTERNET: {
+                // Permission denied.
+                if (grantResults.length == 0 || grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "This app needs internet to function. Exiting.", Toast.LENGTH_LONG).show();
+                    this.onBackPressed();
+                }
+                return;
+            }
+        }
     }
 }
