@@ -26,6 +26,9 @@
     <string name="ratings">Ratings</string>
 
 
+    <string name="email_matcher">^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$</string>
+    <string name="option_unavailable">Sorry, this option is currently unavailable.</string>
+
 
 
 

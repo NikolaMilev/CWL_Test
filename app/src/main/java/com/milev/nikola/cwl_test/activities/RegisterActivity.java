@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.milev.nikola.cwl_test.R;
@@ -37,6 +38,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterUserL
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setInputEnabled(false);
                 String password = editTextPassword.getText().toString();
                 String confirmPassword = editTextConfirmPassword.getText().toString();
 
@@ -47,7 +49,18 @@ public class RegisterActivity extends AppCompatActivity implements RegisterUserL
                 if(validateInput(firstName, lastName, email, password, confirmPassword)){
                     showDialog();
                     RestManager.getInstance().registerUser(firstName, lastName, email, password, RegisterActivity.this);
+                } else{
+                    setInputEnabled(true);
                 }
+            }
+        });
+
+        // For connecting using Facebook (for now, just a message the option is unavailable)
+        Button buttonContinueWithFacebook = findViewById(R.id.buttonContinueWithFacebook);
+        buttonContinueWithFacebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(RegisterActivity.this.getApplicationContext(), "Sorry, this option is currently unavailable.", Toast.LENGTH_LONG);
             }
         });
 
@@ -76,9 +89,16 @@ public class RegisterActivity extends AppCompatActivity implements RegisterUserL
             if(!matcher.find()){
                 return "Email invalid.";
             }
+
+            if(password.length() == 0){
+                return "Invalid password.";
+            }
+
             if(!confirmPassword.equals(password)){
                 return "Passwords not matching.";
             }
+
+
 
             return "";
         }
@@ -113,6 +133,51 @@ public class RegisterActivity extends AppCompatActivity implements RegisterUserL
         if(pleaseWait != null && !this.isFinishing()){
             pleaseWait.dismiss();
         }
+    }
+
+    private void setInputEnabled(boolean enabled){
+        Button buttonRegister = findViewById(R.id.buttonRegister);
+        buttonRegister.setEnabled(enabled);
+
+        EditText editTextFirstName = findViewById(R.id.editTextFirstName);
+        editTextFirstName.setEnabled(enabled);
+
+        EditText editTextLastName = findViewById(R.id.editTextLastName);
+        editTextLastName.setEnabled(enabled);
+
+        EditText editTextEmail = findViewById(R.id.editTextEmail);
+        editTextEmail.setEnabled(enabled);
+
+        EditText editTextPassword = findViewById(R.id.editTextPassword);
+        editTextPassword.setEnabled(enabled);
+
+        EditText editTextConfirmPassword = findViewById(R.id.editTextConfirmPassword);
+        editTextConfirmPassword.setEnabled(enabled);
+    }
+
+    private void resetInput(){
+        // Reset the fields
+        EditText editTextFirstName = findViewById(R.id.editTextFirstName);
+        editTextFirstName.setText("");
+
+        EditText editTextLastName = findViewById(R.id.editTextLastName);
+        editTextLastName.setText("");
+
+        EditText editTextEmail = findViewById(R.id.editTextEmail);
+        editTextEmail.setText("");
+
+        EditText editTextPassword = findViewById(R.id.editTextPassword);
+        editTextPassword.setText("");
+
+        EditText editTextConfirmPassword = findViewById(R.id.editTextConfirmPassword);
+        editTextConfirmPassword.setText("");
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        resetInput();
+        setInputEnabled(true);
     }
 
 

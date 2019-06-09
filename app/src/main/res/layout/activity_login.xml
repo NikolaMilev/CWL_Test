@@ -42,17 +42,17 @@
         android:id="@+id/cardViewLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/triple_button_height"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginBottom="@dimen/double_button_margin"
+        android:layout_marginEnd="@dimen/button_margin"
+        android:layout_marginStart="@dimen/button_margin"
         app:cardCornerRadius="@dimen/border_radius"
         app:cardElevation="@dimen/elevation"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/cardViewContinueWithFacebook"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
-            android:layout_width="332dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center_horizontal"
@@ -155,17 +155,11 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/button_height"
         android:layout_margin="@dimen/button_margin"
-        android:layout_marginBottom="@dimen/button_margin"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         app:cardCornerRadius="@dimen/border_radius"
         app:cardElevation="@dimen/elevation"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/cardViewRegisterWithEmail"
         app:layout_constraintEnd_toEndOf="@+id/cardViewLogin"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/cardViewLogin"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.884">
+        app:layout_constraintStart_toStartOf="@+id/cardViewLogin">
 
         <Button
             android:id="@+id/buttonContinueWithFacebook"
@@ -185,17 +179,14 @@
         android:id="@+id/cardViewRegisterWithEmail"
         android:layout_width="0dp"
         android:layout_height="@dimen/button_height"
-        android:layout_margin="@dimen/button_margin"
-        android:layout_marginBottom="@dimen/button_margin"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginBottom="@dimen/double_button_margin"
+        android:layout_marginEnd="@dimen/button_margin"
+        android:layout_marginStart="@dimen/button_margin"
         app:cardCornerRadius="@dimen/border_radius"
         app:cardElevation="@dimen/elevation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/cardViewLogin"
-        app:layout_constraintStart_toStartOf="@+id/cardViewLogin"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewContinueWithFacebook"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintStart_toStartOf="@+id/cardViewLogin">
 
         <Button
             android:id="@+id/buttonRegisterWithEmail"

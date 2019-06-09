@@ -9,10 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.milev.nikola.cwl_test.R;
 import com.milev.nikola.cwl_test.listeners.LoginAttemptListener;
 import com.milev.nikola.cwl_test.rest_client.RestManager;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity implements LoginAttemptListener{
 
@@ -24,18 +28,27 @@ public class LoginActivity extends AppCompatActivity implements LoginAttemptList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Logging in
         Button loginButton = findViewById(R.id.buttonLogin);
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // TODO Auto-generated method stub
+
+                setInputEnabled(false);
                 EditText editTextEmail = findViewById(R.id.editTextEmail);
                 EditText editTextPassword = findViewById(R.id.editTextPassword);
 
                 String emailString = editTextEmail.getText().toString();
                 String passwordString = editTextPassword.getText().toString();
-                Log.d(TAG, "Login attempt. Email: " + emailString + ", Password: " + passwordString);
-                showDialog();
-                RestManager.getInstance().login(emailString, passwordString, LoginActivity.this);
+
+                if(validateInput(emailString, passwordString)){
+                    Log.d(TAG, "Login attempt. Email: " + emailString + ", Password: " + passwordString);
+                    showDialog();
+                    RestManager.getInstance().login(emailString, passwordString, LoginActivity.this);
+                } else {
+                    setInputEnabled(true);
+                }
+
+
             }
         });
 
@@ -44,6 +57,7 @@ public class LoginActivity extends AppCompatActivity implements LoginAttemptList
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setInputEnabled(false);
                 LoginActivity.this.startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
@@ -53,7 +67,17 @@ public class LoginActivity extends AppCompatActivity implements LoginAttemptList
         forgotPasswordTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setInputEnabled(false);
                 LoginActivity.this.startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
+            }
+        });
+
+        // For connecting using Facebook (for now, just a message the option is unavailable)
+        Button buttonContinueWithFacebook = findViewById(R.id.buttonContinueWithFacebook);
+        buttonContinueWithFacebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(LoginActivity.this.getApplicationContext(), "Sorry, this option is currently unavailable.", Toast.LENGTH_LONG);
             }
         });
     }
@@ -61,11 +85,34 @@ public class LoginActivity extends AppCompatActivity implements LoginAttemptList
     @Override
     public void onStart(){
         super.onStart();
+        resetInput();
+        setInputEnabled(true);
+
+}
+
+
+    private void setInputEnabled(boolean enabled){
+        EditText editTextEmail = findViewById(R.id.editTextEmail);
+        editTextEmail.setEnabled(enabled);
+        EditText editTextPassword = findViewById(R.id.editTextPassword);
+        editTextPassword.setEnabled(enabled);
+        TextView invalidTextView = findViewById(R.id.textViewEmailPasswordInvalid);
+        invalidTextView.setVisibility(View.INVISIBLE);
+
+        Button buttonLogin = findViewById(R.id.buttonLogin);
+        buttonLogin.setEnabled(enabled);
+        Button buttonContinueWithFacebook = findViewById(R.id.buttonContinueWithFacebook);
+        buttonContinueWithFacebook.setEnabled(enabled);
+        Button buttonRegisterWithEmail = findViewById(R.id.buttonRegisterWithEmail);
+        buttonRegisterWithEmail.setEnabled(enabled);
+    }
+
+    private void resetInput(){
         // Reset the fields
-//        EditText editTextEmail = findViewById(R.id.editTextEmail);
-//        editTextEmail.setText("");
-//        EditText editTextPassword = findViewById(R.id.editTextPassword);
-//        editTextPassword.setText("");
+        EditText editTextEmail = findViewById(R.id.editTextEmail);
+        editTextEmail.setText("");
+        EditText editTextPassword = findViewById(R.id.editTextPassword);
+        editTextPassword.setText("");
         TextView invalidTextView = findViewById(R.id.textViewEmailPasswordInvalid);
         invalidTextView.setVisibility(View.INVISIBLE);
     }
@@ -86,6 +133,7 @@ public class LoginActivity extends AppCompatActivity implements LoginAttemptList
         // Tell the user
 //        Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_LONG).show();
         hideDialog();
+        setInputEnabled(true);
         TextView invalidTextView = findViewById(R.id.textViewEmailPasswordInvalid);
         invalidTextView.setVisibility(View.VISIBLE);
     }
@@ -107,6 +155,31 @@ public class LoginActivity extends AppCompatActivity implements LoginAttemptList
     private void hideDialog(){
         if(pleaseWait != null && !this.isFinishing()){
             pleaseWait.dismiss();
+        }
+    }
+
+    private String checkValidInput(String email, String password){
+        Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = p.matcher(email);
+        if(!matcher.find()){
+            return "Email invalid.";
+        }
+
+        if(password.length() == 0){
+            return "Invalid password.";
+        }
+
+        return "";
+
+    }
+
+    private boolean validateInput(String email, String password){
+        String res = checkValidInput(email, password);
+        if(res.equals("")){
+            return true;
+        } else {
+            Toast.makeText(this.getApplicationContext(), res, Toast.LENGTH_LONG).show();
+            return false;
         }
     }
 
