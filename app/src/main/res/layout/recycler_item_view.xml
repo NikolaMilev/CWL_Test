@@ -128,7 +128,7 @@
             android:layout_marginEnd="-2dp"
             android:background="@drawable/cwl_rectangle_8"
             android:paddingBottom="@dimen/button_margin"
-            android:paddingEnd="@dimen/button_margin"
+            android:paddingEnd="12dp"
             android:paddingStart="30dp"
             android:paddingTop="5dp"
             android:text="@string/accepting"

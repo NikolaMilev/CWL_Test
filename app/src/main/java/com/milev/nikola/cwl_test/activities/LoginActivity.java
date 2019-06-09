@@ -77,9 +77,19 @@ public class LoginActivity extends AppCompatActivity implements LoginAttemptList
         buttonContinueWithFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginActivity.this.getApplicationContext(), "Sorry, this option is currently unavailable.", Toast.LENGTH_LONG);
+                Toast.makeText(LoginActivity.this.getApplicationContext(), "Sorry, this option is currently unavailable.", Toast.LENGTH_LONG).show();
             }
         });
+
+        // For the back button
+        Button buttonBack = findViewById(R.id.buttonBack);
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginActivity.this.onBackPressed();
+            }
+        });
+
     }
 
     @Override
@@ -110,9 +120,9 @@ public class LoginActivity extends AppCompatActivity implements LoginAttemptList
     private void resetInput(){
         // Reset the fields
         EditText editTextEmail = findViewById(R.id.editTextEmail);
-        editTextEmail.setText("nikola@gmail.com");
+        editTextEmail.setText("");
         EditText editTextPassword = findViewById(R.id.editTextPassword);
-        editTextPassword.setText("tajna");
+        editTextPassword.setText("");
         TextView invalidTextView = findViewById(R.id.textViewEmailPasswordInvalid);
         invalidTextView.setVisibility(View.INVISIBLE);
     }
@@ -183,4 +193,9 @@ public class LoginActivity extends AppCompatActivity implements LoginAttemptList
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+    }
 }

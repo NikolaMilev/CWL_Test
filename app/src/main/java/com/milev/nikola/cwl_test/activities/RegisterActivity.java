@@ -60,7 +60,16 @@ public class RegisterActivity extends AppCompatActivity implements RegisterUserL
         buttonContinueWithFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(RegisterActivity.this.getApplicationContext(), "Sorry, this option is currently unavailable.", Toast.LENGTH_LONG);
+                Toast.makeText(RegisterActivity.this.getApplicationContext(), "Sorry, this option is currently unavailable.", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        // For the back button
+        Button buttonBack = findViewById(R.id.buttonBack);
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RegisterActivity.this.onBackPressed();
             }
         });
 
@@ -68,6 +77,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterUserL
     @Override
     public void onRegisterUserSuccess() {
         hideDialog();
+        setInputEnabled(true);
         Toast.makeText(RegisterActivity.this.getApplicationContext(), "Succesfully registered. Welcome!", Toast.LENGTH_LONG).show();
         startActivity(new Intent(RegisterActivity.this, HomeFeedActivity.class));
     }
@@ -75,6 +85,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterUserL
     @Override
     public void onRegisterUserFailure() {
         hideDialog();
+        setInputEnabled(true);
         Toast.makeText(RegisterActivity.this.getApplicationContext(), "Failed to register.", Toast.LENGTH_LONG).show();
     }
 

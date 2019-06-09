@@ -1,5 +1,6 @@
 package com.milev.nikola.cwl_test.activities;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,6 +17,8 @@ import java.util.regex.Pattern;
 
 public class ResetPasswordActivity extends AppCompatActivity implements ResetPasswordListener{
 
+    private AlertDialog pleaseWait;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +32,20 @@ public class ResetPasswordActivity extends AppCompatActivity implements ResetPas
                 setInputEnabled(false);
                 String email = editTextEmail.getText().toString();
                 if(validateInput(email)){
+                    showDialog();
                     RestManager.getInstance().requestResetPassword(email, ResetPasswordActivity.this);
                 } else {
                     setInputEnabled(true);
                 }
+            }
+        });
+
+        // For the back button
+        Button buttonBack = findViewById(R.id.buttonBack);
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ResetPasswordActivity.this.onBackPressed();
             }
         });
     }
@@ -40,12 +53,14 @@ public class ResetPasswordActivity extends AppCompatActivity implements ResetPas
     @Override
     public void onResetPasswordSuccess(){
         setInputEnabled(true);
+        hideDialog();
         Toast.makeText(this.getApplicationContext(), "Reset email has been sent", Toast.LENGTH_LONG).show();
         this.finish();
     }
 
     @Override
     public void onResetPasswordFail(){
+        hideDialog();
         setInputEnabled(true);
         Toast.makeText(this.getApplicationContext(), "Unable to send reset email.", Toast.LENGTH_LONG).show();
     }
@@ -91,6 +106,26 @@ public class ResetPasswordActivity extends AppCompatActivity implements ResetPas
         super.onStart();
         resetInput();
         setInputEnabled(true);
+    }
+
+    private void showDialog(){
+        if(pleaseWait == null){
+            AlertDialog.Builder pleaseWaitBuilder = new AlertDialog.Builder(ResetPasswordActivity.this);
+            pleaseWaitBuilder.setCancelable(false);
+            pleaseWaitBuilder.setView(R.layout.please_wait_dialog);
+            pleaseWait = pleaseWaitBuilder.create();
+        }
+
+        if(!this.isFinishing()){
+            pleaseWait.show();
+        }
+
+    }
+
+    private void hideDialog(){
+        if(pleaseWait != null && !this.isFinishing()){
+            pleaseWait.dismiss();
+        }
     }
 
 }

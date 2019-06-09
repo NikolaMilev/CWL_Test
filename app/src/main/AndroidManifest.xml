@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <!-- Start (login) activity -->
         <activity android:name=".activities.LoginActivity"
             android:screenOrientation="portrait">
 
@@ -24,15 +25,17 @@
             </intent-filter>
         </activity>
 
+        <!-- Home (feed) activity -->
         <activity android:name=".activities.HomeFeedActivity"
             android:screenOrientation="portrait">
-
         </activity>
+
+        <!-- Registration activity -->
         <activity android:name=".activities.RegisterActivity"
             android:screenOrientation="portrait">
-
         </activity>
 
+        <!-- Password reset activity -->
         <activity android:name=".activities.ResetPasswordActivity"
             android:screenOrientation="portrait">
 
